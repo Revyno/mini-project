@@ -22,7 +22,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSignup } from "@/hooks/useSignup.hook.js";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/useToast";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 function LoginRedirect() {

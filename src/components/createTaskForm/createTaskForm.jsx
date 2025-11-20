@@ -15,7 +15,7 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
+  // SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -33,12 +33,12 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { useCreateTask } from "@/hooks/useCreateTask.hook.js";
 import { useForm } from "react-hook-form";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/useToast";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export function CreateTaskForm() {
-  const [date, setDate] = useState();
-  const { mutate, isSuccess, isError, isPending } = useCreateTask();
+  const [date] = useState();
+  const { mutate, isSuccess, isError } = useCreateTask();
   const { toast } = useToast();
 
   // 1. Define your form.

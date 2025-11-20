@@ -1,30 +1,42 @@
-import Login from "./pages/login/login.jsx";
-import PageNotFound from "./pages/404/404.jsx";
-import PrivateRoutes from "./components/privateRoutes/privateRoutes.jsx";
-import Signup from "./pages/signup/signup.jsx";
-import Tasks from "./pages/tasks/tasks.jsx";
-import { createBrowserRouter } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-export const router = createBrowserRouter([
-  {
-    element: <PrivateRoutes />,
-    children: [
-      {
-        path: "tasks",
-        element: <Tasks />,
-      },
-    ],
-  },
-  {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "signup",
-    element: <Signup />,
-  },
-  {
-    path: "*",
-    element: <PageNotFound />,
-  },
-]);
+import MainLayout from "@/layouts/MainLayout";
+import ProtectedRoute from "@/components/protectedRoutes/protectedroute";
+
+import Home from "@/pages/home/home";
+import TodoList from "@/pages/TodoList";
+import CreateTodo from "@/pages/CreateTodo";
+import Users from "@/pages/Users";
+import UserDetail from "@/pages/UserDetail";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
+
+export default function RoutesApp() {
+  return (
+    <Routes>
+      {/* Public */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Protected layout */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <MainLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<TodoList />} />
+        <Route path="create" element={<CreateTodo />} />
+        <Route path="users" element={<Users />} />
+        <Route path="users/:id" element={<UserDetail />} />
+        <Route path="home" element={<Home />} />
+      </Route>
+
+      {/* Fallback */}
+      <Route path="*" element={<div className="p-6 text-center">404 — Not Found</div>} />
+    </Routes>
+  );
+}

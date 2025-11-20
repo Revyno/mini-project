@@ -28,11 +28,11 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
+
+      // Matikan warning tidak penting
       'react/jsx-no-target-blank': 'off',
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react/prop-types': 'off',                     // <= SOLUSI PROP TYPES
+      'react-refresh/only-export-components': 'off', // <= SOLUSI FAST REFRESH
     },
   },
 ]
